@@ -40,7 +40,9 @@ public class Triangle implements Measurable {
      * @return vertex of the triangle
      */
     public Vertex2D getVertex(int index) {
-        if (index > 2 || index < 0) return null;
+        if (index > 2 || index < 0) {
+            return null;
+        }
         return vertices[index];
 
     }
@@ -50,7 +52,9 @@ public class Triangle implements Measurable {
      * @return vertex of the triangle
      */
     public  Triangle getSubTriangle(int index) {
-        if (index > 2 || index < 0) return null;
+        if (index > 2 || index < 0) {
+            return null;
+        }
         return triangles[index];
     }
 
@@ -63,7 +67,9 @@ public class Triangle implements Measurable {
      */
     public boolean divide() {
 
-        if (isDivided()) return false;
+        if (isDivided()) {
+            return false;
+        }
         triangles[0] = new Triangle(getVertex(0), vertices[0].createMiddle(vertices[1]),
                 vertices[0].createMiddle(vertices[2]));
         triangles[1] = new Triangle(getVertex(1), vertices[1].createMiddle(vertices[0]),

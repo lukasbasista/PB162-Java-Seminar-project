@@ -3,60 +3,34 @@ package cz.muni.fi.pb162.project.geometry;
 /**
  * @author Lukáš Bašista
  */
-public class Circle implements Measurable, Circular {
-
-    private final Vertex2D center;
-    private final double radius;
+public class Circle extends GeneralRegularPolygon implements Measurable, Circular {
 
     /**
-     *
-     * @param center set the center coordinates of the circle.
-     * @param radius set radius of circle.
-     */
-    public Circle(Vertex2D center, double radius) {
-        this.center = center;
-        this.radius = radius;
-
-    }
-
-    /**
-     *
+     * Circle with center in (0, 0) and radius 1
      */
     public Circle() {
         this(new Vertex2D(0.0, 0.0), 1);
     }
 
-    public Vertex2D getCenter() {
-        return center;
+    /**
+     * @param center set the center coordinates of the circle.
+     * @param radius set radius of circle.
+     */
+    public Circle(Vertex2D center, double radius) {
+        super(center, Integer.MAX_VALUE, radius);
+        this.setColor(Color.RED);
     }
 
-    public double getRadius() {
-        return radius;
+    @Override
+    public double getEdgeLength() {
+        return 0;
     }
 
     /**
-     *
      * @return center and radius of circle
      */
     public String toString() {
         return "Circle: center=" + getCenter() + ", radius=" + getRadius();
     }
 
-    /**
-     *
-     * @return width of circle
-     */
-    @Override
-    public double getWidth() {
-        return 2 * radius;
-    }
-
-    /**
-     *
-     * @return height of circle
-     */
-    @Override
-    public double getHeight() {
-        return 2 * radius;
-    }
 }
