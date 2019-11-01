@@ -1,13 +1,23 @@
 package cz.muni.fi.pb162.project.geometry;
 
 /**
- * @author Ema Liptakova
+ * @author Lukáš Bašista
  */
 public class Vertex2D {
 
 
     private double x;
     private double y;
+
+    /**
+     *
+     * @param x double
+     * @param y double
+     */
+    public Vertex2D(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
 
     public double getX() {
         return x;
@@ -26,28 +36,19 @@ public class Vertex2D {
     }
 
     /**
-     *
-     * @return String
+     * @return String "[x, y]"
      */
-    public String getInfo() {
+    @Override
+    public String toString() {
         return "[" + this.x + ", " + this.y + "]";
     }
 
     /**
-     *
-     * @return sum of coordinates
+     * @param otherVertex vertices of second vertex
+     * @return Vertex2D
      */
-    public double sumCoordinates() {
-        return x + y;
-    }
-
-    /**
-     *
-     * @param vertex (x, y)
-     */
-    public void move(Vertex2D vertex) {
-        this.x += vertex.getX();
-        this.y += vertex.getY();
+    public Vertex2D createMiddle(Vertex2D otherVertex) {
+        return new Vertex2D((this.x + otherVertex.x) / 2, (this.y + otherVertex.y) / 2);
     }
 
 }
