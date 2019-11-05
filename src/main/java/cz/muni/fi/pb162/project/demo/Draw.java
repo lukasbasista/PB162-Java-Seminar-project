@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.util.AbstractMap;
+
 import cz.muni.fi.pb162.project.geometry.Circular;
 
 /**
@@ -97,7 +98,6 @@ public final class Draw extends JFrame {
 
         setGraphicsPolygonColor(regularPolygon);
         Polygon polygon = new Polygon();
-
         for (int i = 0; i < regularPolygon.getNumEdges(); i++) {
             AbstractMap.SimpleEntry<Integer, Integer> pair = createLinePoints(regularPolygon, i);
             polygon.addPoint(pair.getKey(), pair.getValue());
