@@ -1,5 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
+import java.util.Objects;
+
 /**
  * @author Lukáš Bašista
  */
@@ -58,6 +60,25 @@ public class Vertex2D {
     public double sumCoordinates() {
         return x + y;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Vertex2D)) {
+            return false;
+        }
+        Vertex2D vertex2D = (Vertex2D) o;
+        return Double.compare(vertex2D.getX(), getX()) == 0 &&
+                Double.compare(vertex2D.getY(), getY()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY());
+    }
+
 
 
 }

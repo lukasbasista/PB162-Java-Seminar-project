@@ -1,6 +1,6 @@
 package cz.muni.fi.pb162.project.utils;
 
-import cz.muni.fi.pb162.project.geometry.Triangle;
+import cz.muni.fi.pb162.project.geometry.Polygon;
 /**
  * @author Lukáš Bašista
  */
@@ -8,53 +8,73 @@ public class SimpleMath {
 
     /**
      *
-     * @param triangle vertices of triangle
+     * @param polygon vertices of triangle
      * @return minimal X value
      */
-    public static double minX(Triangle triangle) {
-        double x1 = triangle.getVertex(0).getX();
-        double x2 = triangle.getVertex(1).getX();
-        double x3 = triangle.getVertex(2).getX();
-        return Math.min(x1, Math.min(x2, x3));
+    public static double minX(Polygon polygon) {
+        double minimalX;
+        minimalX = polygon.getVertex(0).getX();
+        for (int i = 0; i < polygon.getNumVertices(); i++) {
+            if (minimalX > polygon.getVertex(i).getX()) {
+                minimalX = polygon.getVertex(i).getX();
+            }
+        }
+        return minimalX;
+
 
     }
 
     /**
      *
-     * @param triangle vertices of triangle
+     * @param polygon vertices of triangle
      * @return minimal Y value
      */
-    public static double minY(Triangle triangle) {
-        double x1 = triangle.getVertex(0).getY();
-        double x2 = triangle.getVertex(1).getY();
-        double x3 = triangle.getVertex(2).getY();
-        return Math.min(x1, Math.min(x2, x3));
+    public static double minY(Polygon polygon) {
+        double minimalY;
+        minimalY = polygon.getVertex(0).getY();
+        for (int i = 0; i < polygon.getNumVertices(); i++) {
+            if (minimalY > polygon.getVertex(i).getY()) {
+                minimalY = polygon.getVertex(i).getY();
+            }
+        }
+        return minimalY;
+
 
     }
 
     /**
      *
-     * @param triangle vertices of triangle
+     * @param polygon vertices of triangle
      * @return maximal X value
      */
-    public static double maxX(Triangle triangle) {
-        double x1 = triangle.getVertex(0).getX();
-        double x2 = triangle.getVertex(1).getX();
-        double x3 = triangle.getVertex(2).getX();
-        return Math.max(x1, Math.max(x2, x3));
+    public static double maxX(Polygon polygon) {
+        double maximalX;
+        maximalX = polygon.getVertex(0).getX();
+        for (int i = 0; i < polygon.getNumVertices(); i++) {
+            if (maximalX < polygon.getVertex(i).getX()) {
+                maximalX = polygon.getVertex(i).getX();
+            }
+        }
+        return maximalX;
+
 
     }
 
     /**
      *
-     * @param triangle vertices of triangle
+     * @param polygon vertices of triangle
      * @return maximal Y value
      */
-    public static double maxY(Triangle triangle) {
-        double x1 = triangle.getVertex(0).getY();
-        double x2 = triangle.getVertex(1).getY();
-        double x3 = triangle.getVertex(2).getY();
-        return Math.max(x1, Math.max(x2, x3));
+    public static double maxY(Polygon polygon) {
+        double maximalY;
+        maximalY = polygon.getVertex(0).getY();
+        for (int i = 0; i < polygon.getNumVertices(); i++) {
+            if (maximalY < polygon.getVertex(i).getY()) {
+                maximalY = polygon.getVertex(i).getY();
+            }
+        }
+        return maximalY;
+
 
     }
 }
