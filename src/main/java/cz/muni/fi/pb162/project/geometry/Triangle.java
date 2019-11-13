@@ -1,13 +1,12 @@
 package cz.muni.fi.pb162.project.geometry;
 
-import cz.muni.fi.pb162.project.utils.SimpleMath;
+import java.util.Arrays;
 
 /**
  * @author Lukáš Bašista
  */
-public class Triangle implements Measurable {
+public class Triangle extends ArrayPolygon implements Measurable {
 
-    private final Vertex2D[] vertices = new Vertex2D[3];
     private final Triangle[] triangles = new Triangle[3];
 
     /**
@@ -17,9 +16,29 @@ public class Triangle implements Measurable {
      * @param c coordinates of the vertex of the triangle [x, y]
      */
     public Triangle(Vertex2D a, Vertex2D b, Vertex2D c) {
-        this.vertices[0] = a;
-        this.vertices[1] = b;
-        this.vertices[2] = c;
+        super(new Vertex2D[] {a, b, c});
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Triangle)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Triangle triangle = (Triangle) o;
+        return Arrays.equals(triangles, triangle.triangles);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Arrays.hashCode(triangles);
+        return result;
     }
 
     /**
@@ -34,18 +53,6 @@ public class Triangle implements Measurable {
         divide(j);
     }
 
-    /**
-     *
-     * @param index index of the vertex of the triangle
-     * @return vertex of the triangle
-     */
-    public Vertex2D getVertex(int index) {
-        if (index > 2 || index < 0) {
-            return null;
-        }
-        return vertices[index];
-
-    }
     /**
      *
      * @param index index of the triangle <0,2>
@@ -70,12 +77,12 @@ public class Triangle implements Measurable {
         if (isDivided()) {
             return false;
         }
-        triangles[0] = new Triangle(getVertex(0), vertices[0].createMiddle(vertices[1]),
-                vertices[0].createMiddle(vertices[2]));
-        triangles[1] = new Triangle(getVertex(1), vertices[1].createMiddle(vertices[0]),
-                vertices[1].createMiddle(vertices[2]));
-        triangles[2] = new Triangle(getVertex(2), vertices[2].createMiddle(vertices[0]),
-                vertices[2].createMiddle(vertices[1]));
+        triangles[0] = new Triangle(getVertex(0), getVertex(0).createMiddle(getVertex(1)),
+                getVertex(0).createMiddle(getVertex(2)));
+        triangles[1] = new Triangle(getVertex(1), getVertex(1).createMiddle(getVertex(0)),
+                getVertex(1).createMiddle(getVertex(2)));
+        triangles[2] = new Triangle(getVertex(2), getVertex(2).createMiddle(getVertex(0)),
+                getVertex(2).createMiddle(getVertex(1)));
         return true;
     }
 
@@ -120,29 +127,12 @@ public class Triangle implements Measurable {
         return ((Math.abs(s1-s2) < 0.001) && (Math.abs(s1-s3) < 0.001) && (Math.abs(s2-s3) < 0.001));
     }
 
+
     /**
      *
      * @return String
      */
     public String toString() {
-        return "Triangle: vertices=" + vertices[0] + " " + vertices[1] + " " + vertices[2];
-    }
-
-    /**
-     *
-     * @return max width of triangle
-     */
-    @Override
-    public double getWidth() {
-        return SimpleMath.maxX(this) - SimpleMath.minX(this);
-    }
-
-    /**
-     * max height of triangle
-     * @return
-     */
-    @Override
-    public double getHeight() {
-        return SimpleMath.maxY(this) - SimpleMath.minY(this);
+        return "Triangle: vertices=" + this.getVertex(0) + " " + this.getVertex(1) + " " + this.getVertex(2);
     }
 }
