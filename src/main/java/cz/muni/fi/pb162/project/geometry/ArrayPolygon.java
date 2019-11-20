@@ -10,23 +10,18 @@ public class ArrayPolygon extends SimplePolygon {
 
     /**
      *
-     * @param v array of vertices
+     * @param vertices array of vertices
      * @throws IllegalArgumentException if array is/contains null
      */
-    public ArrayPolygon(Vertex2D[] v) throws IllegalArgumentException {
-        if (v == null) {
-            throw new IllegalArgumentException("Array of Vertex2D is null");
-        }
+    public ArrayPolygon(Vertex2D[] vertices) throws IllegalArgumentException {
+        super(vertices);
+        this.vertices = new Vertex2D[vertices.length];
 
-        this.vertices = new Vertex2D[v.length];
-        for (int i = 0; i < v.length; i++) {
-            if (v[i] == null) {
-                throw new IllegalArgumentException("Array contains null pointer");
-            }
-            this.vertices[i] = v[i];
+        for (int i = 0; i < vertices.length; i++) {
+            this.vertices[i] = vertices[i];
         }
-
     }
+
 
     @Override
     public boolean equals(Object o) {
