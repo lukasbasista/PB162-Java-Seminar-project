@@ -1,5 +1,7 @@
 package cz.muni.fi.pb162.project.geometry;
 
+import cz.muni.fi.pb162.project.exception.MissingVerticesException;
+
 /**
  * @author Lukáš Bašista
  */
@@ -12,6 +14,9 @@ public abstract class SimplePolygon implements Polygon {
     public SimplePolygon(Object[] vertices) {
         if (vertices == null) {
             throw new IllegalArgumentException("Null pointer instead of array.");
+        }
+        if (vertices.length < 3) {
+            throw new MissingVerticesException("Missing vertices");
         }
         for (int i = 0; i < vertices.length; i++) {
             if (vertices[i] == null) {
