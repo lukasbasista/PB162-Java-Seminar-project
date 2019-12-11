@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * @author Lukáš Bašista
  */
-public class Vertex2D {
+public class Vertex2D implements Comparable<Vertex2D> {
 
     private final double x;
     private final double y;
@@ -79,6 +79,17 @@ public class Vertex2D {
         return Objects.hash(getX(), getY());
     }
 
+    @Override
+    public int compareTo(Vertex2D o) {
+        double diff = this.getX() - o.getX();
+
+        if( diff  !=0.0 ) {
+            return ((int) Math.signum(diff));
+        }else {
+            diff = this.getY() - o.getY();
+            return ((int) Math.signum(diff));
+        }
+    }
 
 
 }

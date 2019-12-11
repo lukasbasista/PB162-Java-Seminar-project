@@ -26,6 +26,10 @@ public abstract class SimplePolygon implements Polygon {
 
     }
 
+    protected SimplePolygon() {
+
+    }
+
 
     @Override
     public double getWidth() {
